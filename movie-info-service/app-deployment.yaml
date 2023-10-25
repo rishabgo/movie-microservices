@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-info-service
+  labels:
+    app: movie-info-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: movie-info-service
+  template:
+    metadata:
+      labels:
+        app: movie-info-service
+    spec:
+      containers:
+        - name: movie-info-service
+          image: movie-info-service:1.0
+          ports:
+            - containerPort: 8081
+
+---
+
+apiVersion: v1 # Kubernetes API version
+kind: Service # Kubernetes resource kind we are creating
+metadata: # Metadata of the resource kind we are creating
+  name: movie-info-service
+spec:
+  selector:
+    app: movie-info-service
+  type: ClusterIP # type of the service.
+  ports:
+    - name: movie-info-service
+      port: 8081 # The port that the service is running on in the cluster
+      targetPort: 8081 # The port exposed by the service

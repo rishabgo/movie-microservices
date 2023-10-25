@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-catalog-service
+spec:
+  selector:
+    matchLabels:
+      app: movie-catalog-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: movie-catalog-service
+    spec:
+      containers:
+        - name: movie-catalog-service
+          image: movie-catalog-service:1.1
+          ports:
+            - containerPort: 8080
+---
+
+apiVersion: v1 # Kubernetes API version
+kind: Service # Kubernetes resource kind we are creating
+metadata: # Metadata of the resource kind we are creating
+  name: movie-catalog-service
+spec:
+  selector:
+    app: movie-catalog-service
+  type: NodePort # type of the service.
+  ports:
+    - name: movie-catalog-service
+      port: 8080 # The port that the service is running on in the cluster
+      targetPort: 8080 # The port exposed by the service

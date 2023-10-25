@@ -1,0 +1,5 @@
+com\rishabh\moviecatalogservice\MovieCatalogServiceApplication.class
+com\rishabh\moviecatalogservice\model\Rating.class
+com\rishabh\moviecatalogservice\controller\MovieCatalogController.class
+com\rishabh\moviecatalogservice\model\CatalogItem.class
+com\rishabh\moviecatalogservice\model\Movie.class
